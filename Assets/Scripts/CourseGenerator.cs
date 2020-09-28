@@ -206,17 +206,17 @@ public class CourseGenerator : MonoBehaviour
         GameObject gridItem = null;
 
         if(sum == 1) {
-            gridItem = squareOnes[0];
+            gridItem = chooseRandom(squareOnes);
         } else if(sum == 2) {
             if((borderArray[0] != 0 && borderArray[2] != 0) || (borderArray[1] != 0 && borderArray[3] != 0)) {
-                gridItem = squareTwoStraights[0];
+                gridItem = chooseRandom(squareTwoStraights);
             } else {
-                gridItem = squareTwoBents[0];
+                gridItem = chooseRandom(squareTwoBents);
             }
         } else if(sum == 3) {
-            gridItem = squareThrees[0];
+            gridItem = chooseRandom(squareThrees);
         } else if(sum == 4) {
-            gridItem = squareFours[0];
+            gridItem = chooseRandom(squareFours);
         }
 
         return gridItem;
@@ -301,5 +301,24 @@ public class CourseGenerator : MonoBehaviour
             j - 1 >= 0 && grid[i,j-1] > 0 ? 1 : 0,
             i - 1 >= 0 && grid[i-1,j] > 0 ? 1 : 0
         };
+    }
+
+    GameObject chooseRandom(GameObject[] items)
+    {
+        if(items.Length > 1) {
+            Random rand = new Random(); 
+            float num = Random.Range(0.0f, 1.0f);
+
+            if(num > 0.5f) {
+                num = Random.Range(1.0f, items.Length);
+
+                return items[(int)num];
+            } else {
+                return items[0];
+            }
+
+        } else {
+            return items[0];
+        }
     }
 }
