@@ -68,6 +68,7 @@ public class CourseGenerator : MonoBehaviour
     public void resetPlayer()
     {
         player.transform.position = new Vector3(((int)Mathf.Floor(GRIDSIZE / 2.0f) * 10) - 5, 2, 0);
+        player.GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
     }
 
     void deleteScene()

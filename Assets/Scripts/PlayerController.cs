@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour
                     bool angleValid = int.TryParse(e.Command.ArgumentsAsList[0], out angle);
                     bool forceValid = int.TryParse(e.Command.ArgumentsAsList[1], out force);
 
-                    if(angleValid && forceValid) {
+                    if(angleValid && forceValid && Mathf.Abs(force) <= 10) {
 
                         float xcomponent = Mathf.Cos(angle * Mathf.PI / 180) * hitForceMultiplier * force;
                         float ycomponent = Mathf.Sin(angle * Mathf.PI / 180) * hitForceMultiplier * force;
