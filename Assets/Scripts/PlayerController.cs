@@ -30,13 +30,13 @@ public class PlayerController : MonoBehaviour
 		// Application.runInBackground = true;
 
 		//Create Credentials instance
-		ConnectionCredentials credentials = new ConnectionCredentials(Secrets.USERNAME_FROM_OAUTH_TOKEN, Secrets.OAUTH_TOKEN);
+		ConnectionCredentials credentials = new ConnectionCredentials(PlayerPrefs.GetString("botUsername", ""), PlayerPrefs.GetString("oauthToken", ""));
 
 		// Create new instance of Chat Client
 		_client = new Client();
 
 		// Initialize the client with the credentials instance, and setting a default channel to connect to.
-		_client.Initialize(credentials, _channelToConnectTo);
+		_client.Initialize(credentials, PlayerPrefs.GetString("channelUsername", ""));
 
 		// Bind callbacks to events
 		_client.OnConnected += OnConnected;
